@@ -6,6 +6,7 @@ import { GlobalExceptionsFilter } from './filters/exception-filter';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfig } from './config/mongo.config';
+import { ModelsProvider } from './schemas/model.provider';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { MongooseConfig } from './config/mongo.config';
     MongooseModule.forRootAsync({
       useClass: MongooseConfig,
     }),
-    MongooseModule.forFeature([]),
+    MongooseModule.forFeature(ModelsProvider),
   ],
   controllers: [AppController],
   providers: [
