@@ -9,7 +9,7 @@ export type UserDocument = HydratedDocument<User>;
   versionKey: false,
   timestamps: true,
 })
-export class User extends AbstractSchema {
+export class User {
   @Prop({ type: String, required: true, unique: true })
   email: string;
 
@@ -17,5 +17,4 @@ export class User extends AbstractSchema {
   password: string;
 }
 
-export const UserSchema =
-  SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(User);

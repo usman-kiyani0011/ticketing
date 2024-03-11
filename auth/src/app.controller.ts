@@ -1,16 +1,16 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('api/users')
 export class AppController {
   constructor(private readonly appService: AppService) {}
   @Post('signup')
-  signup(): string {
-    return this.appService.getHello();
+  signup(@Body() body: any) {
+    return this.appService.signup(body);
   }
 
   @Post('signin')
-  signin(): string {
+  signin(@Body() body: any) {
     return this.appService.getHello();
   }
 

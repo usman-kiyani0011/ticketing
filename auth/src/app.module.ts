@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfig } from './config/mongo.config';
 import { ModelsProvider } from './schemas/model.provider';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -15,10 +16,15 @@ import { ModelsProvider } from './schemas/model.provider';
       useClass: MongooseConfig,
     }),
     MongooseModule.forFeature(ModelsProvider),
+    JwtModule.register({
+      secret: '%!secrect!%',
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
   controllers: [AppController],
   providers: [
     AppService,
+    JwtService,
     { provide: APP_FILTER, useClass: GlobalExceptionsFilter },
   ],
 })
