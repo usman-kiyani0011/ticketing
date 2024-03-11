@@ -20,7 +20,7 @@ export class AppController {
   }
 
   @Get('current-user')
-  getHello(): string {
+  currentUser(): string {
     return this.appService.getHello();
   }
 }
