@@ -9,4 +9,4 @@ kubctl create secret jwt-secret --from-literal=JWT_KEY=asdf
 
 
 
-video 14
+video 15
