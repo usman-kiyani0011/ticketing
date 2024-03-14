@@ -49,7 +49,7 @@ export class AppService {
       return {
         user: user,
         accessToken: this.jwtService.sign(payload, {
-          secret: process.env.JWT_SECRET,
+          secret: process.env.JWT_KEY,
         }),
       };
     } catch (error) {
@@ -82,7 +82,7 @@ export class AppService {
   async verifyToken({ token }) {
     try {
       const verifiedPayload = await this.jwtService.verify(token, {
-        secret: process.env.JWT_SECRET,
+        secret: process.env.JWT_KEY,
       });
       if (!verifiedPayload || !verifiedPayload?.sub) {
         throw new UnauthorizedException('Invalid Token');
