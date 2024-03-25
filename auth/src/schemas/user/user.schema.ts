@@ -1,9 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-import { HydratedDocument } from 'mongoose';
-import { AbstractSchema } from '../abstract/abstract.schema';
+export type UserDocument = User & Document;
 
-export type UserDocument = HydratedDocument<User>;
 @Schema({
   collection: 'users',
   versionKey: false,
@@ -18,3 +17,11 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.plugin(function (schema) {
+  schema.methods.toJSON = function () {
+    const obj = this.toObject();
+    delete obj.password;
+    return obj;
+  };
+});
