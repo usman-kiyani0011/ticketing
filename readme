@@ -1,8 +1,9 @@
+kubectl create secret jwt-secret --from-literal=JWT_KEY=asdf
+
 kubectl expose deployment auth-srv --port=3000
 
 kubectl port-forward service/auth-srv 3000:3000
 
-kubctl create secret jwt-secret --from-literal=JWT_KEY=asdf
 
 
 

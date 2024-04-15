@@ -11,7 +11,7 @@ export class AppController {
 
   @Post('signin')
   signin(@Body() body: any) {
-    return this.appService.getHello();
+    return this.appService.signin(body);
   }
 
   @Post('signout')

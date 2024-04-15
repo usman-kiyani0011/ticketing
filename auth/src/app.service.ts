@@ -33,8 +33,7 @@ export class AppService {
         ...payload,
         password: hashedPassword,
       });
-      const { password, ...restObject } = user.toJSON();
-      return restObject;
+      return user;
     } catch (error) {
       throw error;
     }
@@ -59,8 +58,7 @@ export class AppService {
   async validateUser(username: string, password: string) {
     const user = await this.userModel.findOne({ email: username });
     if (user && (await bcrypt.compare(password, user.password))) {
-      const { password, ...restObject } = user;
-      return restObject;
+      return user;
     }
     return null;
   }
@@ -90,8 +88,7 @@ export class AppService {
       const user = await this.userModel.findOne({
         email: verifiedPayload?.email,
       });
-      const { password, ...restObject } = user;
-      return restObject;
+      return user;
     } catch (err) {
       throw new err();
     }
