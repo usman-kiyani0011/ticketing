@@ -7,7 +7,7 @@ kubectl port-forward service/auth-srv 3000:3000
 
 
 
-
+kubectl cluster-info
 
 
 video 23 done
